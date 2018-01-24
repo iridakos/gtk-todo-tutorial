@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'gtk3'
+
+app = Gtk::Application.new 'com.iridakos.gtk-todo', Gio::ApplicationFlags::FLAGS_NONE
+
+app.signal_connect :activate do |application|
+  window = Gtk::ApplicationWindow.new(application)
+  window.set_title 'Hello GTK+Ruby!'
+  window.present
+end
+
+puts app.run [$0] + ARGV
