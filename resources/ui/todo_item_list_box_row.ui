@@ -3,19 +3,21 @@
 <interface>
   <requires lib="gtk+" version="3.12"/>
   <template class="TodoItemListBoxRow" parent="GtkListBoxRow">
-    <property name="width_request">100</property>
-    <property name="height_request">80</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
+    <property name="valign">start</property>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="valign">start</property>
         <property name="orientation">vertical</property>
+        <property name="baseline_position">top</property>
         <child>
           <object class="GtkBox" id="todo_item_top_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">start</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkLabel" id="todo_item_title_label">
@@ -33,11 +35,12 @@
             </child>
             <child>
               <object class="GtkButton" id="details_button">
-                <property name="label">gtk-go-down</property>
+                <property name="label">...</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="valign">start</property>
+                <property name="always_show_image">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -56,7 +59,7 @@
           <object class="GtkRevealer" id="todo_item_details_revealer">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="reveal_child">True</property>
+            <property name="valign">start</property>
             <child>
               <object class="GtkBox" id="details_box">
                 <property name="visible">True</property>
@@ -124,7 +127,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>

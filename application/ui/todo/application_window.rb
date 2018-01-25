@@ -9,6 +9,7 @@ module Todo
         set_template resource: '/com/iridakos/gtk-todo/ui/application_window.ui'
 
         bind_template_child 'add_new_item_button'
+        bind_template_child 'todo_items_list_box'
       end
     end
 
@@ -20,6 +21,19 @@ module Todo
       add_new_item_button.signal_connect 'clicked' do |button|
         new_item_window = NewItemWindow.new(application, Todo::Item.new(user_data_path: application.user_data_path))
         new_item_window.present
+      end
+
+      load_todo_items
+    end
+
+    def load_todo_items
+      todo_items_list_box.children.each { |child| todo_items_list_box.remove child }
+
+      json_files = Dir[File.join(File.expand_path(application.user_data_path), '*.json')]
+      items = json_files.map{ |filename| Todo::Item.new(filename: filename) }
+
+      items.each do |item|
+        todo_items_list_box.add Todo::ItemListBoxRow.new(item)
       end
     end
   end
