@@ -29,7 +29,7 @@ module Todo
 
       # Assign the properties
       PROPERTIES.each do |property|
-        self.send "#{property}=", properties[property]
+        self.send "#{property}=", properties[property.to_s]
       end
     rescue => e
       raise ArgumentError, "Failed to load existing item: #{e.message}"
