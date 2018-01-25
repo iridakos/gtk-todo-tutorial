@@ -20,7 +20,6 @@ module Todo
 
     def initialize(application, item)
       super application: application
-
       set_title "ToDo item #{item.id} - #{item.is_new? ? 'Create' : 'Edit' } Mode"
 
       id_value_label.text = item.id
@@ -38,6 +37,18 @@ module Todo
       renderer = Gtk::CellRendererText.new
       priority_combo_box.pack_start(renderer, true)
       priority_combo_box.set_attributes(renderer, "text" => 0)
+
+      cancel_button.signal_connect 'clicked' do |button|
+        close
+      end
+
+      save_button.signal_connect 'clicked' do |button|
+        item.title = title_text_entry.text
+        item.notes = notes_text_view.buffer.text
+        item.priority = priority_combo_box.active_iter.get_value(0) if priority_combo_box.active_iter
+        item.save!
+        close
+      end
     end
   end
 end
