@@ -5,19 +5,21 @@ module Todo
   class Item
     PROPERTIES = [:id, :title, :notes, :priority, :filename, :creation_datetime].freeze
 
+    PRIORITIES = ['high', 'medium', 'normal', 'low'].freeze
+
     attr_accessor *PROPERTIES
 
     def initialize(options = {})
-      if root_path = options[:root_path]
-        # New item. When saved, it will be placed under the :root_path value
+      if user_data_path = options[:user_data_path]
+        # New item. When saved, it will be placed under the :user_data_path value
         @id = SecureRandom.uuid
         @creation_datetime = Time.now.to_s
-        @filename = "#{root_path}/#{id}.json"
+        @filename = "#{user_data_path}/#{id}.json"
       elsif filename = options[:filename]
         # Load an existing item
         load_from_file filename
       else
-        raise ArgumentError, 'Please specify the :root_path for new item or the :filename to load existing'
+        raise ArgumentError, 'Please specify the :user_data_path for new item or the :filename to load existing'
       end
     end
 
