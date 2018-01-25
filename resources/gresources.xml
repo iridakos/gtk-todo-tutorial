@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/com/iridakos/gtk-todo">
     <file preprocess="xml-stripblanks">ui/application_window.ui</file>
+    <file preprocess="xml-stripblanks">ui/new_item_window.ui</file>
   </gresource>
 </gresources>
