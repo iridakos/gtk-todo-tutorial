@@ -25,5 +25,5 @@ at_exit do
   FileUtils.rm_f(resource_bin)
 end
 
-app = ToDo::Application.new
+app = Todo::Application.new
 puts app.run

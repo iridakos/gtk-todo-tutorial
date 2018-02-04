@@ -1,4 +1,4 @@
-module ToDo
+module Todo
   class Application < Gtk::Application
     attr_reader :user_data_path
 
